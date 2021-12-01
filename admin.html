@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bilkent EEE Graduate Seminars</title>
+	<meta charset="UTF-8">
+    <link rel='shortcut icon' href='./images/favicon.ico' type='image/x-icon'/>
+    <link rel="stylesheet" href="css/sortable-theme-finder.css"/>
+    <link rel="stylesheet" href="css/osxbutton.css"/>
+    <script src="js/sortable.min.js"></script>
+</head>
+<body>
+
+<div style="margin-left: 20px">
+    <p>
+        <a class="button about" style="text-align: center" href="" id="refresh-btn" onclick="return refresh()">Refresh</a>
+    </p>
+
+    <table class="sortable-theme-finder" data-sortable>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Poster</th>
+        </tr>
+        </thead>
+        <tbody id="users-table">
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+<script>
+    let secret = prompt("Enter secret: ")
+
+    function refresh() {
+        fetch("https://ieee.bilkent.edu.tr/grc2019/endpoint/dump.php", {
+            method: "post",
+            body: JSON.stringify({secret: secret})
+        }).then(response => {
+            return response.json();
+        }).then(users => {
+            let table = document.getElementById("users-table");
+
+            while (table.firstChild) {
+                table.removeChild(table.firstChild);
+            }
+
+            users.forEach(user => {
+                let row = table.insertRow();
+                let cell = row.insertCell();
+                cell.innerText = user["id"];
+                cell = row.insertCell();
+                cell.innerText = user["email"];
+                cell = row.insertCell();
+                cell.innerText = user["firstname"];
+                cell = row.insertCell();
+                cell.innerText = user["lastname"];
+                cell = row.insertCell();
+
+                if (user["poster"] !== null) {
+                    cell.innerHTML = `<a target='_blank' href='${user['poster']}'>${user['poster']}</a>`;
+                }
+                else {
+                    cell.innerHTML = "<strong>NOT SUBMITTED</strong>"
+                }
+            });
+        });
+
+        return false; // ugly hack to prevent anchor element redirect
+    }
+
+    refresh();
+</script>
+
+</html>

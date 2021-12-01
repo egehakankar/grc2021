@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bilkent EEE Graduate Seminars</title>
+    <meta charset="UTF-8">s
+    <link rel='shortcut icon' href='./images/favicon.ico' type='image/x-icon' />
+    <link href="css/default.css" rel="stylesheet" />
+    <script src="js/posterForms.js" defer></script>
+    <style>
+        form {
+            width: 80%;
+            margin: 0 auto 40px auto;
+        }
+        
+        label,
+        input {
+            /* in order to define widths */
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        label {
+            width: 30%;
+            /* positions the label text beside the input */
+            text-align: left;
+        }
+        
+        label+input {
+            width: 30%;
+            /* large margin-right to force the next element to the new-line
+               and margin-left to create a gutter between the label and input */
+            margin: 0 30% 0 4%;
+        }
+        /* only the submit button is matched by this selector,
+           but to be sure you could use an id or class for that button */
+        
+        input+input {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="logo">
+        <br/><br/><br/>
+        <a href="index.html" title=""><img height="130px" src="images/solYukari.png?random=<?php echo rand() ?>" style="margin-left: 50px;" alt="" /></a>
+    </div>
+    <div id="content">
+        <div id="sidebar">
+            <div id="menu">
+                <ul>
+                    <li><a href="index.html" title="">Home</a></li>
+                    <li><a href="grc.html" title="">About GRC</a></li>
+                    <li class="active"><a href="submissioninfo.html" title="">Submissions</a></li>
+                    <li><a href="schedule.html" title="">Schedule</a></li>
+                    <li><a href="presentations.html" title="">Technical Program</a></li>
+                    <li><a href="awards.html" title="">Awards</a></li>
+                    <li><a href="gallery2019.html" title="">Gallery: GRC 2019</a></li>
+                    <li><a href="transportation.html" title="">How to go to GRC?</a></li>
+                    <li><a href="contact.html" title="">Contact</a></li>
+                    <li><a href="ieee.html" title="">IEEE Bilkent Student Branch</a></li>
+                </ul>
+            </div>
+            <div id="login" class="boxed">
+                <img src="images/Bilkentlog.jpg" width="200px" alt="Bilkent Logo" />
+                <img src="images/IEEE_125.gif" width="200px" alt="ieee" />
+            </div>
+
+        </div>
+        <div id="main">
+            <div id="welcome" class="post">
+
+                <h2 class="title">Submissions</h2>
+                <div class="story">
+                    <form id="register-form">
+                        <p style="margin-bottom: 0">Fill in the following details to get a submission password:</p>
+                        <p style="margin-bottom: 0">(You can use this form to reset your password.)</p>
+                        <label for="register-id">Bilkent ID:</label><input id="register-id" />
+                        <label for="register-firstname">First name:</label><input id="register-firstname" />
+                        <label for="register-lastname">Last name:</label><input id="register-lastname" />
+                        <label for="register-email">Bilkent e-mail:</label><input id="register-email" />
+                        <input id="register-btn" type="button" value="Register">
+                    </form>
+
+                    <form id="login-form">
+                        <p style="margin-bottom: 0">Enter your Bilkent e-mail and your password to login:</p>
+                        <label for="login-email">E-mail:</label><input id="login-email" />
+                        <label for="login-password">Password:</label><input id="login-password" autocomplete="new-password" />
+                        <input id="login-btn" type="button" value="Login">
+                    </form>
+
+                    <form id="upload-form" method="post" enctype="multipart/form-data" style="display: none">
+                        <p id="upload-welcome"></p>
+                        <p id="upload-info"></p>
+                        <input type="file" name="files[]">
+                        <input type="submit" value="Upload File" name="submit">
+
+                        <p><u>Please wait</u> for upload to complete after clicking "Upload File" <b>After uploading check your submission link if it is succesfuly uploaded. If not, send an email to this address:
+                            hakan.karaagac@ug.bilkent.edu.tr.</b></p>
+                    </form>
+                    <input id="logout-btn" type="button" value="Logout" style="display: none">
+                    <!--<p>Poster submissions will be openned.</p>-->
+                </div>
+
+            </div>
+        </div>
+        <div id="footer">
+
+        </div>
+
+</body>
+
+</html>
